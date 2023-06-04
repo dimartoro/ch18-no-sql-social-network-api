@@ -2,14 +2,15 @@ const router = require('express').Router();
 const {
   // createUser,
   // getUsers,
-  // createThought,
-  // addFriend,
+  removeReaction,
+  addReaction,
   getSingleThought,
   deleteThought,
   updateThought,
   getThoughts,
   createThought
 } = require('../../controllers/thoughtController.js');
+const { remove } = require('../../models/Assignment.js');
 
 // /api/users
 router.route('/').get(getThoughts).post(createThought);
@@ -18,9 +19,10 @@ router.route('/').get(getThoughts).post(createThought);
 
 router.route('/:thoughtId').get(getSingleThought).delete(deleteThought).put(updateThought);
 
-// router.route('/:userId/friends/:friendId').post(addFriend);
+// /api/students/:studentId/assignments
+router.route('/:thoughtId/reactions').post(addReaction);
 
-//router.route('/users/:userId').post(addThought);
-// /api/courses/:courseId
+// /api/students/:studentId/assignments/:assignmentId
+router.route('/:thoughtId/reactions/:reactionId').delete(removeReaction);
 
 module.exports = router;

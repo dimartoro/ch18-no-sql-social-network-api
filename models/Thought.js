@@ -1,4 +1,5 @@
 const { Schema, model, default: mongoose } = require('mongoose');
+const reactionSchema = require('./Reaction');
 
 // Schema to create a course model
 const thoughtSchema = new Schema(
@@ -7,7 +8,7 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
     },
-    reactions: [],
+    reactions: [reactionSchema],
     createdAt: {
       type: Date,
       default: Date.now(),
