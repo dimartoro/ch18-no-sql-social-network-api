@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {
   // createUser,
-  // getUsers,
+  getAllThoughts,
   removeReaction,
   addReaction,
   getSingleThought,
@@ -14,6 +14,7 @@ const { remove } = require('../../models/Assignment.js');
 
 // /api/users
 router.route('/').get(getThoughts).post(createThought);
+//router.route('/').get(getAllThoughts).post(createThought);
 
 //router.route('/thoughts').post(createThought);
 

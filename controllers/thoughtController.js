@@ -1,16 +1,55 @@
 const { ObjectId } = require('mongoose').Types;
 const {Thought, Reaction } = require('../models');
 
+// Aggregate function to get the number of students overall
+const thougthsCount = async () => {
+  const numberOfThoughts = await Thought.aggregate()
+    .count('thoughtCount');
+  return numberOfThoughts;
+}
+
+// Aggregate function to get the number of students overall
+const reactionCount = async (sender)=> {
+  const numberOfReactions = sender.reactions.length;
+  return numberOfReactions;
+}
+
 module.exports = {
   // Get all thoughts
   async getThoughts(req, res) {
     try {
+      const thoughts = await Thought.find();
+      // console.log("thoughts:::::::", thoughts);
+      // const ths = thoughts.aggregate([
+      //   {
+      //     $project: {
+      //       _id: 0,
+      //        formattedDate: { $dateToString: { format: "%d-%m-%Y", date: "$createdAt" } }
+      //     }
+      //   }
+      // ])
+      // ;
+      // console.log("ths:::::::", ths);
+      const thoughtObj = {
+        thoughts,
+        thougthsCount: await thougthsCount()
+      };
+      res.json(thoughtObj);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  },
+
+  async getAllThoughts(req,res){
+    try{
       const thoughts = await Thought.find();
       res.json(thoughts);
     } catch (err) {
       res.status(500).json(err);
     }
   },
+
+  
 
   // Create a thought
   async createThought(req, res) {
@@ -32,8 +71,11 @@ module.exports = {
       if (!thought) {
         return res.status(404).json({ message: 'No thought with that ID' });
       }
-
-      res.json(thought);
+      const thoughtObj = {
+        thought,
+        reactionCount: await reactionCount(thought)
+      };
+      res.json(thoughtObj);
     } catch (err) {
       res.status(500).json(err);
     }

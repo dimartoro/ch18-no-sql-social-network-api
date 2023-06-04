@@ -1,3 +1,4 @@
+var moment = require('moment');
 const { Schema, model, default: mongoose } = require('mongoose');
 const reactionSchema = require('./Reaction');
 
@@ -10,8 +11,9 @@ const thoughtSchema = new Schema(
     },
     reactions: [reactionSchema],
     createdAt: {
-      type: Date,
-      default: Date.now(),
+      type:String
+      // type: Date,
+      // default: ()=> {Date.now()},
     },
     username:
       {
@@ -26,6 +28,11 @@ const thoughtSchema = new Schema(
     id: false,
   }
 );
+
+thoughtSchema.pre('save',function(next){
+  this.createdAt = moment(this.createdAt).format('MM-DD-YYYY');
+  next();
+});
 
 const Thought = model('thought', thoughtSchema);
 module.exports = Thought;
