@@ -18,7 +18,4 @@ router.route('/:userId/friends/:friendId').post(addFriend);
 
 router.route('/:userId/thoughts/:thoughtId').post(addThought);
 
-//router.route('/users/:userId').post(addThought);
-// /api/courses/:courseId
-
 module.exports = router;

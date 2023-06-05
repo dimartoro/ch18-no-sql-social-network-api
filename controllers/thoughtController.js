@@ -1,14 +1,14 @@
 const { ObjectId } = require('mongoose').Types;
 const {Thought, Reaction } = require('../models');
 
-// Aggregate function to get the number of students overall
+// Aggregate function to get the number of thouthts overall
 const thougthsCount = async () => {
   const numberOfThoughts = await Thought.aggregate()
     .count('thoughtCount');
   return numberOfThoughts;
 }
 
-// Aggregate function to get the number of students overall
+// Aggregate function to get the number of reactions overall
 const reactionCount = async (sender)=> {
   const numberOfReactions = sender.reactions.length;
   return numberOfReactions;
@@ -19,17 +19,6 @@ module.exports = {
   async getThoughts(req, res) {
     try {
       const thoughts = await Thought.find();
-      // console.log("thoughts:::::::", thoughts);
-      // const ths = thoughts.aggregate([
-      //   {
-      //     $project: {
-      //       _id: 0,
-      //        formattedDate: { $dateToString: { format: "%d-%m-%Y", date: "$createdAt" } }
-      //     }
-      //   }
-      // ])
-      // ;
-      // console.log("ths:::::::", ths);
       const thoughtObj = {
         thoughts,
         thougthsCount: await thougthsCount()
@@ -89,7 +78,7 @@ module.exports = {
         res.status(404).json({ message: 'No thought with that ID' });
       }
 
-      //await Student.deleteMany({ _id: { $in: course.students } });
+      //await .deleteMany({ _id: { $in: course.students } });
       res.json({ message: 'thought deleted' });
     } catch (err) {
       res.status(500).json(err);

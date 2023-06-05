@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 const thoughtSchema = require('./Thought');
-// const assignmentSchema = require('./Assignment');
 
 // Schema to create Student model
 const userSchema = new Schema(
@@ -8,9 +7,9 @@ const userSchema = new Schema(
     username: {
       type: String,
       required: true,
-      //unique:true,
+      unique:true,
       max_length: 50,
-      //trim:true
+      trim:true
     },
     email: {
       type: String,

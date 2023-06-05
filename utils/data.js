@@ -103,12 +103,12 @@ const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const getRandomName = () =>
   `${getRandomArrItem(names)}`;
 
-// Function to generate random assignments that we can add to student object.
+// Function to generate random thoughts names.
 const getRandomThought = () => {
   return getRandomArrItem(appDescriptions);
 };
 
-// Function to generate random assignments that we can add to student object.
+// Function to generate random reactions that we can add to Thought object.
 const getRandomReactions = (int) => {
   const results = [];
   for (let i = 0; i < int; i++) {

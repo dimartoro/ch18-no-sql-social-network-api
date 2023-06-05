@@ -1,12 +1,35 @@
 const { ObjectId } = require('mongoose').Types;
 const {User} = require('../models');
 
+// Aggregate function to get the number of thouthts overall
+const usersCount = async () => {
+  const numberOfUsers = await User.aggregate()
+    .count('userCount');
+  return numberOfUsers;
+}
+
+// Aggregate function to get the number of friends overall
+const friendsCount = async (sender)=> {
+  const numberOfFriends = sender.friends.length;
+  return numberOfFriends;
+}
+
+// Aggregate function to get the number of thougths overall
+const thoughtsCount = async (sender)=> {
+  const numberOfThoughts = sender.thoughts.length;
+  return numberOfThoughts;
+}
+
 module.exports = {
   // Get all users
   async getUsers(req, res) {
     try {
       const users = await User.find();
-      res.json(users);
+      const usersObj = {
+        users,
+        usersCount: await usersCount()
+      };
+      res.json(usersObj);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -19,7 +42,8 @@ module.exports = {
     try {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $addToSet: { friends: req.body } }
+        // { $addToSet: { friends: req.body } }
+        { $addToSet: { friends: {_id:req.params.friendId}} }
         // ,{ runValidators: true, new: true }
       );
 
@@ -42,8 +66,8 @@ module.exports = {
     try {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $addToSet: { thoughts: req.body } }
-        // ,{ runValidators: true, new: true }
+        { $addToSet: { thoughts: {_id:req.params.thoughtId} } },
+        { runValidators: true, new: true }
       );
 
       if (!user) {
@@ -64,10 +88,17 @@ module.exports = {
         .select('-__v').populate("friends").populate("thoughts");
 
       if (!user) {
-        return res.status(404).json({ message: 'No course with that ID' });
+        return res.status(404).json({ message: 'No User with that ID' });
       }
 
-      res.json(user);
+      const userObj = {
+        user,
+        friendsCount: await friendsCount(user),
+        thoughtsCount: await thoughtsCount(user)
+      };
+
+      res.json(userObj);
+
     } catch (err) {
       res.status(500).json(err);
     }
@@ -89,11 +120,12 @@ module.exports = {
       const user = await User.findOneAndDelete({ _id: req.params.userId });
 
       if (!user) {
-        res.status(404).json({ message: 'No course with that ID' });
+        res.status(404).json({ message: 'No user with that ID' });
       }
 
       //await user.deleteMany({ _id: { $in: course.students } });
-      res.json({ message: 'Course and students deleted!' });
+      //res.json({ message: 'Course and students deleted!' });
+      res.json({ message: 'User deleted!' });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -108,7 +140,7 @@ module.exports = {
       );
 
       if (!user) {
-        res.status(404).json({ message: 'No course with this id!' });
+        res.status(404).json({ message: 'No user with this id!' });
       }
 
       res.json(user);
