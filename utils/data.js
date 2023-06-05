@@ -75,24 +75,25 @@ const names = [
 ];
 
 const appDescriptions = [
-  'Decision Tracker',
-  'Find My Phone',
-  'Learn Piano',
-  'Starbase Defender',
-  'Tower Defense',
-  'Monopoly Money Manager',
-  'Movie trailers',
-  'Hello world',
-  'Stupid Social Media App',
-  'Notes',
-  'Messages',
-  'Email',
-  'Compass',
-  'Firefox',
-  'Running app',
-  'Cooking app',
-  'Poker',
-  'Deliveries',
+  'Cloud Computing and cloud services',
+  'Artificial Intelligence in Machines',
+  'Automatic number plate recognition',
+  'Artificial intelligence language models – GPT3, GPT4',
+  'Brain-controlled car for the disabled using artificial intelligence',
+  'Brain Computer Interface (BCI)',
+  'Augmented Reality vs Virtual Reality',
+  'Blockchain Technology and its Applications',
+  'Cyber Crime and Security',
+];
+
+const reactions = [
+  'Nice',
+  'Cool',
+  'Interesting',
+  'Everybody knows that',
+  'I did not know',
+  'That is great',
+  'I had no idea',
 ];
 
 // Get a random item given an array
@@ -100,19 +101,28 @@ const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 // Gets a random full name
 const getRandomName = () =>
-  `${getRandomArrItem(names)} ${getRandomArrItem(names)}`;
+  `${getRandomArrItem(names)}`;
 
 // Function to generate random assignments that we can add to student object.
-const getRandomAssignments = (int) => {
+const getRandomThought = () => {
+  return getRandomArrItem(appDescriptions);
+};
+
+// Function to generate random assignments that we can add to student object.
+const getRandomReactions = (int) => {
   const results = [];
   for (let i = 0; i < int; i++) {
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
+    const createdAt =  today.toLocaleDateString();
     results.push({
-      assignmentName: getRandomArrItem(appDescriptions),
-      score: Math.floor(Math.random() * (99 - 70 + 1) + 70),
+      reactionBody: getRandomArrItem(reactions),
+      username: getRandomName(),
+      createdAt:createdAt
     });
   }
   return results;
 };
 
 // Export the functions for use in seed.js
-module.exports = { getRandomName, getRandomAssignments };
+module.exports = { getRandomName, getRandomThought, getRandomReactions };
