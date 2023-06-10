@@ -29,9 +29,11 @@ const thoughtSchema = new Schema(
 );
 
 thoughtSchema.pre('save',function(next){
+  //using package moment to define the format of the date. 
   this.createdAt = moment(this.createdAt).format('MM-DD-YYYY');
   next();
 });
 
+//defines model and exports it
 const Thought = model('thought', thoughtSchema);
 module.exports = Thought;

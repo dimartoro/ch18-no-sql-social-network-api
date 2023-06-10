@@ -1,7 +1,7 @@
 const { ObjectId } = require('mongoose').Types;
 const {User} = require('../models');
 
-// Aggregate function to get the number of thouthts overall
+// Aggregate function to get the number of users overall
 const usersCount = async () => {
   const numberOfUsers = await User.aggregate()
     .count('userCount');
@@ -34,7 +34,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Add frieds
+  // Add friends
   async addFriend(req, res) {
     console.log('You are adding a friend');
     console.log(req.body);
@@ -42,9 +42,7 @@ module.exports = {
     try {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
-        // { $addToSet: { friends: req.body } }
         { $addToSet: { friends: {_id:req.params.friendId}} }
-        // ,{ runValidators: true, new: true }
       );
 
       if (!user) {
@@ -62,7 +60,6 @@ module.exports = {
   async addThought(req, res) {
     console.log('You are adding a thought');
     console.log(req.body);
-
     try {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
@@ -122,9 +119,6 @@ module.exports = {
       if (!user) {
         res.status(404).json({ message: 'No user with that ID' });
       }
-
-      //await user.deleteMany({ _id: { $in: course.students } });
-      //res.json({ message: 'Course and students deleted!' });
       res.json({ message: 'User deleted!' });
     } catch (err) {
       res.status(500).json(err);
@@ -136,7 +130,6 @@ module.exports = {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
         { $set: req.body },
-        // { runValidators: true, new: true }
       );
 
       if (!user) {

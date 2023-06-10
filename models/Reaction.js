@@ -31,8 +31,10 @@ const reactionSchema = new Schema(
 );
 
 reactionSchema.pre('save',function(next){
+  //This will use the package moment to define the format of the date. 
   this.createdAt = moment(this.createdAt).format('MM-DD-YYYY');
   next();
 });
 
+//exports schema
 module.exports = reactionSchema;

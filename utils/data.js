@@ -1,3 +1,4 @@
+//array of names used to generate random names for creation of users.
 const names = [
   'Analia',
   'Adam',
@@ -30,6 +31,7 @@ const names = [
   'Dore',
 ];
 
+//array of descriptions used to generate random selection for the creation of thoughts. 
 const appDescriptions = [
   'Cloud Computing and cloud services',
   'Artificial Intelligence in Machines',
@@ -42,6 +44,7 @@ const appDescriptions = [
   'Cyber Crime and Security',
 ];
 
+//array of reactions used to generate randon set of reactions to add to thougths. 
 const reactions = [
   'Nice',
   'Cool',
@@ -55,11 +58,11 @@ const reactions = [
 // Get a random item given an array
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-// Gets a random full name
+// Gets a random name
 const getRandomName = () =>
   `${getRandomArrItem(names)}`;
 
-// Function to generate random thoughts names.
+// Function to generate random thoughts.
 const getRandomThought = () => {
   return getRandomArrItem(appDescriptions);
 };

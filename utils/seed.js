@@ -46,7 +46,7 @@ connection.once('open', async () => {
 
     const thoughtText = getRandomThought();
     const username = getRandomName();
-    //get 3 random reactions to add to the reactions array on thoughts
+    //get 2 random reactions to add to the reactions array on thoughts
     const reactions = getRandomReactions(2);
     const timeElapsed = Date.now();
     const today = new Date(timeElapsed);
@@ -62,6 +62,7 @@ connection.once('open', async () => {
 
   // Add users to the collection and await the results
   await User.collection.insertMany(users);
+  //Add thughts to the collection and await the results
   await Thought.collection.insertMany(thoughts);
 
   // Log out the seed data to indicate what should appear in the database

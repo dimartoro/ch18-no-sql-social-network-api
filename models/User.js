@@ -18,6 +18,7 @@ const userSchema = new Schema(
       max_length: 100,
       validate: {
         validator: (v) => {
+          //regex to validate an email entry
             return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
         },
         message: "Please enter a valid email"
@@ -35,5 +36,6 @@ const userSchema = new Schema(
   }
 );
 
+//exports the model. 
 const User = model('user', userSchema);
 module.exports = User;

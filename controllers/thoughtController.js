@@ -77,7 +77,6 @@ module.exports = {
         res.status(404).json({ message: 'No thought with that ID' });
       }
 
-      //await .deleteMany({ _id: { $in: course.students } });
       res.json({ message: 'thought deleted' });
     } catch (err) {
       res.status(500).json(err);
@@ -89,7 +88,6 @@ module.exports = {
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
         { $set: req.body },
-        // { runValidators: true, new: true }
       );
 
       if (!thought) {
