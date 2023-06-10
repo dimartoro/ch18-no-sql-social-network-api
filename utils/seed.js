@@ -15,12 +15,24 @@ connection.once('open', async () => {
 
   // Create empty array to hold the users
   const users = [];
+  const usedNames = [];
 
   // Loop 10 times -- add users to the users array
   for (let i = 0; i < 10; i++) {
-    const username = getRandomName();
-    const email = `${username}@gmail.com`;
+    var isNewUser = false;
+    var username = "";
+    while(isNewUser == false){
+      var uniqueUser = getRandomName();
+      if(usedNames.includes(uniqueUser)){
+        isNewUser = false;
+      }else{
+        usedNames.push(uniqueUser);
+        username = uniqueUser;
+        isNewUser = true;
+      }
+    }
     
+    var email = `${username}@gmail.com`;
     users.push({
       username,
       email
@@ -35,7 +47,7 @@ connection.once('open', async () => {
     const thoughtText = getRandomThought();
     const username = getRandomName();
     //get 3 random reactions to add to the reactions array on thoughts
-    const reactions = getRandomReactions(3);
+    const reactions = getRandomReactions(2);
     const timeElapsed = Date.now();
     const today = new Date(timeElapsed);
     const createdAt =  today.toLocaleDateString();

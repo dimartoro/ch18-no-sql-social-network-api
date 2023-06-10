@@ -38,8 +38,6 @@ module.exports = {
     }
   },
 
-  
-
   // Create a thought
   async createThought(req, res) {
     try {
@@ -69,6 +67,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+  
   // Delete a thought
   async deleteThought(req, res) {
     try {

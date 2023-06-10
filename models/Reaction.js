@@ -1,6 +1,8 @@
 var moment = require('moment');
 const { Schema, Types } = require('mongoose');
 
+// Schema to create a Reaction / this won't be a model, but rather will be used as the 
+//reaction field's subdocument schema in the Thought model.
 const reactionSchema = new Schema(
   {
     reactionId:{
