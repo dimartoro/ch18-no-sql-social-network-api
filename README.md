@@ -2,7 +2,7 @@
 # NoSQL: Social Network API
 
 ## Description
-This is an API Social Network application where users can share thoughts, react to friend's thoughts, and create a friend list. The technologies used are Express.js for routing, a MongoDB database, the Mongoose ODM, and Java Script.
+My API Social Network application lets you share thoughts, react to friends' thoughts, and create a friend list. The technologies used are Express.js for routing, a MongoDB database, the Mongoose ODM, and Java Script.
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
