@@ -17,8 +17,8 @@ connection.once('open', async () => {
   const users = [];
   const usedNames = [];
 
-  // Loop 5 times -- add users to the users array
-  for (let i = 0; i < 5; i++) {
+  // Loop 8 times -- add users to the users array
+  for (let i = 0; i < 8; i++) {
     var isNewUser = false;
     var username = "";
     while(isNewUser == false){
@@ -41,13 +41,13 @@ connection.once('open', async () => {
 
   const thoughts = [];
 
-  // Loop 5 times -- add thoughts to the thoughts array
-  for (let i = 0; i < 5; i++) {
+  // Loop 8 times -- add thoughts to the thoughts array
+  for (let i = 0; i < 8; i++) {
 
     const thoughtText = getRandomThought();
     const username = getRandomName();
-    //get 2 random reactions to add to the reactions array on thoughts
-    const reactions = getRandomReactions(2);
+    //get 8 random reactions to add to the reactions array on thoughts
+    const reactions = getRandomReactions(8);
     const timeElapsed = Date.now();
     const today = new Date(timeElapsed);
     const createdAt =  today.toLocaleDateString();

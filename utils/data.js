@@ -47,12 +47,13 @@ const appDescriptions = [
 //array of reactions used to generate randon set of reactions to add to thougths. 
 const reactions = [
   'Nice',
-  'Cool',
+  'Cool!',
   'Interesting',
   'Everybody knows that',
   'I did not know',
-  'That is great',
+  'That is great!!',
   'I had no idea',
+  'I strongly disagree!'
 ];
 
 // Get a random item given an array
