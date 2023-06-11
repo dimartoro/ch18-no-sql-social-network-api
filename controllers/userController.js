@@ -30,6 +30,8 @@ module.exports = {
         usersCount: await usersCount()
       };
       res.json(usersObj);
+
+      
     } catch (err) {
       res.status(500).json(err);
     }

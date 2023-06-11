@@ -31,8 +31,21 @@ https://www.youtube.com/watch?v=DZBGEVgL2eE&t=1040s
 
 
 ## Tests
-The application will be testing using Insomnia, the request and response bringing the data required by the user criteria will successfully pass the intended use of the application.
-
+The application will be testing using Insomnia, the request and response bringing the data required by the user criteria will successfully pass the intended use of the application.  
+   
+P1. socialnetworkDB users empty:       
+![alt "socialnetworkDB users empty"](./public/images/database-users-empty.png)    
+P2. socialnetworkDB thoughts empty:        
+![alt "socialnetworkDB thoughts empty"](./public/images/database-thoughts-empty.png)  
+P3. socialnetworkDB users seeded:      
+![alt "socialnetworkDB users seeded"](./public/images/socialnetworkDB-users-seeded.png)  
+P4. socialnetworkDB thoughts seeded:      
+![alt "socialnetworkDB thoughts seeded"](./public/images/socialnetworkDB-thoughts-seeded.png) 
+P5. User by Id:      
+![alt "User by Id"](./public/images/UserById.png)  
+P6. User with thoughts and friends:      
+![alt "User with thoughts and friends"](./public/images/User-thoughts-friends.png)  
+  
 ## Email
 Contact me with additional questions at this email address:
 
@@ -45,6 +58,6 @@ https://github.com/dimartoro
 This app is licensed under [MIT](https://choosealicense.com/licenses/mit/) lincense
 
 ## VideoLink
-https://drive.google.com/file/d/1Ic14KwgC7xy8tJC7A5SB_llg_hcsXhf1/view
+https://drive.google.com/file/d/1UWGpX2rsLXoCb8NY58qVABjPkji38T0S/view
 
 
